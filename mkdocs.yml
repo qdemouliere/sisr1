@@ -8,6 +8,8 @@ theme:
     - yaml
     - rust
   locale: fr
+  features:
+    - content.code.copy
 markdown_extensions:
   - admonition
   - tables
