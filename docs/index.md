@@ -1,4 +1,4 @@
-# Documentation à destination des étudiants de BTS SIO 1 SISR 
+# Bloc 2 - Exploitation des serveurs et des services SISR 1 
 
 Bienvenue sur la page dédiée à la documentation Bloc 2 - Administration des systèmes et des réseaux du BTS SIO du lycée Paul-Louis Courier.
 
