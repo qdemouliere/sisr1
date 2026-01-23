@@ -141,4 +141,84 @@ sudo resize2fs /dev/Data/MySQLData 30G
 sudo lvreduce -L 30G /dev/Data/MySQLData
 ```
 
+**Suppression d'un volume logique**
+
+```bash
+sudo umount /bdd 
+sudo lvremove /dev/Data/MySQLData 
+```
+
+**Suppression d'un groupe de volume** 
+
+```bash 
+sudo lvremove /dev/Data
+sudo vgremove Data
+```
+
+**Surveiller l'état des volumes** 
+
+```bash 
+sudo lvscan
+```
+
+## 5. Les snapshots
+
+LVM permet de réaliser des clichés instantanés de volumes logiques (snapshots). Les snapshots sont des volumes logiques "spéciaux". Ce LV "snapshot" ne contient pas de système de fichiers et ne peut donc pas être monté. Il va stocker uniquement les modifications de données (ajout/suppressions). On définira une taille à ce volume logique de type snapshot, mais cette valeur n'agrandira pas le volume logique initial évidemment
+
+Dans un premier temps, il faut s'assurer qu'il reste de la place dans le groupe de volume afin de pouvoir créer un nouveau volume logique dédié aux snpashots.
+
+```bash 
+sudo vgs
+```
+
+Il faut identifier ensuite le volume logique pour lequel on veut créer un instantané.
+
+```bash 
+sudo lvs 
+```
+
+**Création du snapshot**
+
+```bash 
+sudo lvcreate -L 10G -s -n snapbdd /dev/Data/MySQLData
+```
+
+On va créer ici un nouveau volume logique de 10 Giga dédié aux snapshots de MySQLData. Les 10 Giga ne seront pas directement mobilisés. Au fur et à mesure des modifications dans MySQLData, *snpbdd* grossira et utilisera de plus en plus d'espace libre.
+
+La taille va augmenter à chaque modification sur le système de fichier concerné : création, modification, suppression de fichiers. Il peut donc théoriquement avoir besoin de plus de place sur le LV "snapshot" que de place initiale sur le LV source. Il s'agit du même mécanisme que les snapshots de machine virtuelle.
+
+**Restaurer un snapshot démontable**
+
+Si l'on ne souhaite pas conserver les modifications réalisées après le snapshot, on va restaurer le volume logique dans son état antérieur.
+
+```bash 
+sudo umount /bdd 
+sudo lvconvert --mergesnapshot /dev/Data/MySQLData
+sudo mount /data 
+```
+
+**Restaurer un snapshot non démontable** 
+
+Dans le cas d'un snapshot de la racine par exemple, ou d'un volume utilisé par des processus qu'on ne peut stopper, on va lancer directement la commande lvconvert.
+
+```bash 
+sudo lvconvert --mergesnapshot /dev/Data/snapbdd
+sudo shutdown -r shutdown
+```
+
+Pour prendre en compte la restauration, nous n'aurons pas d'autre choix que de redémarrer la machine.
+
+**Fusionner le snapshot** 
+
+Si après des modifications, on souhaite garder les données en l'état, on va supprimer le snapshot réalisé précédemment. Le LV d'origine et le LV snapshot seront fusionnés.
+
+```bash 
+sudo lvremove /dev/Data/snapbdd
+```
+
+## Sources 
+
+- [La documentation sur LVM de Stéphane Robert](https://blog.stephane-robert.info/docs/admin-serveurs/linux/lvm/) 
+- [L'article sur les snapshots LVM d'Adrien Linux Tricks](https://www.linuxtricks.fr/wiki/lvm-avance-les-snapshots) 
+- [La documentation sur LVM d'IT Connect](https://www.it-connect.fr/gestion-des-lvm-sous-linux/) 
 
