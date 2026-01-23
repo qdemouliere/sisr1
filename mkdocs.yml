@@ -2,12 +2,12 @@ site_name: Documentation technique du bloc 2 SISR 1
 site_url: https://qdemouliere.github.io/sisr1
 copyright: Licence CC 4.0 FR BY-NC-SA - 2025 Q. Demoulière - Lycée Paul-Louis Courier 
 theme:
-  name: readthedocs
-  highlightjs: true
-  hljs_languages:
-    - yaml
-    - rust
-  locale: fr
+  name: mkdocs
+  #highlightjs: true
+  #hljs_languages:
+  #  - yaml
+  #  - rust
+  #locale: fr
   features:
     - content.code.copy
 markdown_extensions:
