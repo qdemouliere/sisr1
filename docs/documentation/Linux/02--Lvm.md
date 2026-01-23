@@ -42,15 +42,16 @@ sudo apt install lvm2
 
 **Analyse des disques existants sur le système**
 
-```bash
+```bash 
  sudo lsblk
- ``` 
+```
 
 On peut également utiliser l'outil historique *fdisk*.
 
 ```bash
 sudo fdisk -l 
 ```
+
 
 **Convertir des disques ou des partitions en Physical Volumes (PV)**
 
@@ -133,7 +134,7 @@ sudo resize2fs /dev/Data/MySQLData
 **Réduction de la taille d'un volume logique**
 
 !!! Warning  "Attention"
-  La réduction d'un volume logique n'est pas anodin et peut entrainer des problèmes dont la perte ou la corruption de données. Réalisez cette opération avec prudence.
+    La réduction d'un volume logique n'est pas anodin et peut entrainer des problèmes dont la perte ou la corruption de données. Réalisez cette opération avec prudence.
 
 ```bash
 sudo resize2fs /dev/Data/MySQLData 30G
