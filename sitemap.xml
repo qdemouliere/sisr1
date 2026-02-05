@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://qdemouliere.github.io/sisr1/</loc>
+         <lastmod>2026-02-05</lastmod>
+    </url>
+    <url>
+         <loc>https://qdemouliere.github.io/sisr1/documentation/Linux/01--Commandes/</loc>
+         <lastmod>2026-02-05</lastmod>
+    </url>
+    <url>
+         <loc>https://qdemouliere.github.io/sisr1/documentation/Linux/02--Lvm/</loc>
+         <lastmod>2026-02-05</lastmod>
+    </url>
+    <url>
+         <loc>https://qdemouliere.github.io/sisr1/documentation/Linux/03--Grub/</loc>
+         <lastmod>2026-02-05</lastmod>
+    </url>
+</urlset>
