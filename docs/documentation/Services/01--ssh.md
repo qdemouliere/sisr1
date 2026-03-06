@@ -194,8 +194,8 @@ ssh-copy-id -i ~/.ssh/id_ed25519.pub utilisateur@serveur
 ```
 
 !!! warning "Attention"
-   Lors du transfert de votre clé publique sur le serveur via cette commande, vous devez vous assurer que l'authentification par login
-   et mot de passe est toujours active pour pouvoir réaliser l'opération.
+    Lors du transfert de votre clé publique sur le serveur via cette commande, vous devez vous assurer que l'authentification par login
+    et mot de passe est toujours active pour pouvoir réaliser l'opération.
 
 **Méthode manuelle**
 
