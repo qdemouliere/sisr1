@@ -1,4 +1,3 @@
-
 # Administration et configuration d'un service OpenSSH
 
 ## I. Introduction à OpenSSH
@@ -11,7 +10,6 @@ OpenSSH est une suite d’outils open source permettant de sécuriser les connex
 - Support des algorithmes modernes (Ed25519, ChaCha20-Poly1305)
 - Gestion centralisée des clés et des connexions
 
----
 
 ## II. Fonctionnement d’une Connexion SSH
 
@@ -81,7 +79,6 @@ Voici le nouveau format que vous pourriez retrouver dans ce fichier :
 | `scp fichier utilisateur@serveur:/chemin/destination` | Copier un fichier vers le serveur |
 | `sftp utilisateur@serveur` | Ouvrir une session SFTP interactive |
 
----
 
 ## II. Configuration du Serveur SSH sous Debian 13
 
@@ -102,7 +99,6 @@ Vérifiez le statut du service :
 sudo systemctl status ssh
 ```
 
----
 
 ### 2. Fichier de Configuration `/etc/ssh/sshd_config`
 
@@ -142,7 +138,6 @@ Redémarrer le service après modification :
 sudo systemctl restart ssh
 ```
 
----
 
 ### 3. Les clés présentes sur le serveur : `/etc/ssh/ssh_host_*`
 
@@ -164,7 +159,6 @@ Contrairement à ce que l'on pourrait croire de prime abord, ces paires de clés
 !!! danger "Sécurité"
     **Ne jamais partager la clé privée du serveur.**
 
----
 
 ## III. Authentification par Clés SSH (Ed25519)
 
@@ -174,7 +168,6 @@ Contrairement à ce que l'on pourrait croire de prime abord, ces paires de clés
 - Exposition aux **fuites de mots de passe**
 - Absence de **traçabilité fiable**
 
----
 
 ### 2. Génération d’une Paire de Clés Ed25519
 
@@ -192,7 +185,6 @@ Cela génère :
 !!! tip "Astuce"
     Protégez votre clé privée avec une **phrase de passe (passphrase)**.
 
----
 
 ### 3. Copie de la Clé Publique sur le Serveur
 
@@ -212,8 +204,6 @@ ssh-copy-id -i ~/.ssh/id_ed25519.pub utilisateur@serveur
 cat ~/.ssh/id_ed25519.pub | ssh utilisateur@serveur "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
 ```
 
----
-
 ### 4. Désactivation de l’authentification par mot de passe
 
 Modifier `/etc/ssh/sshd_config` :
@@ -228,8 +218,6 @@ Puis redémarrer le service :
 ```bash
 sudo systemctl restart ssh
 ```
-
----
 
 ### 5. Vérification et dépannage
 
@@ -261,13 +249,11 @@ Avec rsyslog
 sudo cat /var/log/auth.log
 ```
 
----
 
-## I.V Conclusion
+## IV Conclusion
 
 **OpenSSH** est un outil indispensable pour l’administration sécurisée de serveurs distants.  
 En appliquant ces bonnes pratiques, vous réduisez fortement les risques de compromission.
 
----
 
 
