@@ -67,7 +67,6 @@ Voici le nouveau format que vous pourriez retrouver dans ce fichier :
 ```text 
 |1|pz3StX4JbD/XviB6ETOYlcaFqLA=|L0IubZCEOrV/VWE9qR4GzoUThSU= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNBGU/vaa6OdX8kIxle0aom7wu8rbIMaTZo+Q+lrVoZf1xsw0odlojFsoVjsOarRZ4oP9Ywf9wjya6dFNYBndHo=
 ```
-```
 
 ### 4. Commandes SSH de Base
 
