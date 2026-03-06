@@ -249,7 +249,7 @@ sudo cat /var/log/auth.log
 ```
 
 
-## IV Conclusion
+## IV. Conclusion
 
 **OpenSSH** est un outil indispensable pour l’administration sécurisée de serveurs distants.  
 En appliquant ces bonnes pratiques, vous réduisez fortement les risques de compromission.
