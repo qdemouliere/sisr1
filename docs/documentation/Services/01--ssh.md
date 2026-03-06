@@ -5,10 +5,10 @@
 OpenSSH est une suite d’outils open source permettant de sécuriser les connexions à distance entre machines via le protocole SSH (Secure Shell). Il remplace les protocoles non chiffrés comme Telnet ou FTP, en offrant un chiffrement fort pour toutes les communications, empêchant ainsi l’écoute, le détournement de connexion et d’autres attaques. OpenSSH est intégré par défaut dans la plupart des distributions Linux, dont Debian 13, et est largement utilisé pour l’administration système, le transfert de fichiers sécurisé (SCP, SFTP) et la création de tunnels chiffrés.
 
 **Fonctionnalités clés :**
-- Chiffrement de bout en bout
-- Authentification par mot de passe ou par clé publique/privée
-- Support des algorithmes modernes (Ed25519, ChaCha20-Poly1305)
-- Gestion centralisée des clés et des connexions
+
+* Chiffrement de bout en bout
+* Authentification par mot de passe ou par clé publique/privée
+* Support des algorithmes modernes (Ed25519, ChaCha20-Poly1305)
 
 
 ## II. Fonctionnement d’une Connexion SSH
