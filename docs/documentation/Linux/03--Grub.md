@@ -66,6 +66,14 @@ set superusers=adminsio
 password_pbkdf2 adminsio grub.pbkdf2.sha512.10000.C0F70D240A8BC5F[…]
 ```
 
+Il ne faut pas oublier d'indiquer à Grub que cette demande de login et mot de passe ne doit s'effectuer qu'en cas de tentative de modification des paramètres de boot par défaut. Pour cela, il faut ajouter *--unrestricted* à la variable CLASS. 
+
+```bash
+sudoedit /etc/grub.d/10_linux
+...
+CLASS="--class gnu-linux --class gnu --class os --unrestricted"
+```
+
 Il reste enfin à prendre en compte ces nouveaux paramètres et à redémarrer.
 
 ```bash
