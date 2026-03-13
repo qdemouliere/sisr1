@@ -4,7 +4,7 @@
 
 Le bootloader GRUB est un logiciel central lorsque l'on met en place un serveur sur GNU/Linux. En effet, il permet d'amorcer le démarrage du système en choisissant la version du noyau utilisée ainsi qu'un certain nombre d'options.
 
-Or, par défaut n'importe qui peut modifier les paramètres d'amorçage de GRUB. Cela peut ainsi permettre à quelqu'un de malveillant de se connecter au système GNU/Linux en mode Single User qui correspond à mode de secours. Dans ce mode, on se connecte avec le superadministrateur sans mot de passe. On peut donc par la suite réaliser n'importe quelle opération sur l'OS.
+Or, par défaut n'importe qui peut modifier les paramètres d'amorçage de GRUB. Cela peut ainsi permettre à quelqu'un de malveillant de se connecter au système GNU/Linux en mode Single User qui correspond à un mode de secours. Dans ce mode, on se connecte avec le superadministrateur sans mot de passe. On peut donc par la suite réaliser n'importe quelle opération sur l'OS.
 
 Heureusement, il est possible d'imposer la mise en place d'une authentification par login et mot de passe lorsque que l'on souhaite modifier les paramètres de boot de GRUB.
 

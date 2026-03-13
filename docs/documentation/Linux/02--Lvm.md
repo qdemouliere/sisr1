@@ -102,10 +102,14 @@ sudo lvcreate -L 250G -n MySQLData Data
 sudo lvdisplay
 ```
 
-**Formatage des volumes logiques (LV)**
+**Formatage des volumes logiques (LV) en ext4 ou en btrfs**
 
 ```bash
 sudo mkfs.ext4 /dev/Data/MySQLData
+```
+
+```bash
+sudo mkfs.btrfs /dev/Data/MySQLData
 ```
 
 **Montage des volumes logiques sur le système**
@@ -131,6 +135,13 @@ Après avoir agrandi le volume logique, il est nécessaire de redimensionner le 
 sudo resize2fs /dev/Data/MySQLData
 ```
 
+!!! warning "Attention"
+    Avec le système de fichier BTRFS la commande sera différente !
+
+```bash
+sudo btrfs filesystem resize max /dev/Data/MySQLData
+```
+
 **Réduction de la taille d'un volume logique**
 
 !!! Warning  "Attention"
@@ -138,6 +149,13 @@ sudo resize2fs /dev/Data/MySQLData
 
 ```bash
 sudo resize2fs /dev/Data/MySQLData 30G
+sudo lvreduce -L 30G /dev/Data/MySQLData
+```
+
+Avec BTRFS la commande sera là encore différente.
+
+```bash
+sudo btrfs filesystem resize -30G /dev/Data/MySQLData
 sudo lvreduce -L 30G /dev/Data/MySQLData
 ```
 
