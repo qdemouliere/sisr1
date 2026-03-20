@@ -139,7 +139,7 @@ sudo resize2fs /dev/Data/MySQLData
     Avec le système de fichier BTRFS la commande sera différente !
 
 ```bash
-sudo btrfs filesystem resize max /dev/Data/MySQLData
+sudo btrfs filesystem resize max /var/lib/mysql
 ```
 
 **Réduction de la taille d'un volume logique**
@@ -155,7 +155,7 @@ sudo lvreduce -L 30G /dev/Data/MySQLData
 Avec BTRFS la commande sera là encore différente.
 
 ```bash
-sudo btrfs filesystem resize -30G /dev/Data/MySQLData
+sudo btrfs filesystem resize -30G /var/lib/mysql
 sudo lvreduce -L 30G /dev/Data/MySQLData
 ```
 
