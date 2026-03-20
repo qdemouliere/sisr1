@@ -38,7 +38,7 @@ Dans ce tutoriel nous utiliserons **le mode par défaut avec stockage en mémoir
 
 ---
 
-# Objectif
+# II. Objectif
 
 Configurer un serveur DHCP capable de distribuer :
 
@@ -55,7 +55,7 @@ Plage d'adresses :
 
 ---
 
-# Prérequis
+# III. Prérequis
 
 - Une machine **Debian avec une adresse IP fixe**
 
@@ -72,7 +72,7 @@ Plage d'adresses :
 
 ---
 
-# II. Installation du serveur DHCP KEA
+# IV. Installation du serveur DHCP KEA
 
 Mettre à jour les paquets :
 
@@ -110,9 +110,9 @@ Main PID: 3427 (kea-dhcp4)
 
 ---
 
-# III. Configuration du serveur DHCP KEA
+# IV. Configuration du serveur DHCP KEA
 
-## Identifier l’interface réseau
+## A. Identifier l’interface réseau
 
 Afficher la configuration réseau :
 
@@ -128,7 +128,7 @@ ens33
 
 ---
 
-## Sauvegarde de la configuration
+## B. Sauvegarde de la configuration
 
 Avant modification :
 
@@ -144,7 +144,7 @@ sudo nano /etc/kea/kea-dhcp4.conf
 
 ---
 
-# Configuration de base
+## C. Configuration de base
 
 ```json
 {
@@ -173,9 +173,9 @@ sudo nano /etc/kea/kea-dhcp4.conf
 
 ---
 
-# Explications
+## D. Explications
 
-## Interface réseau
+### 1. Interface réseau
 
 ```json
 "interfaces-config": {
@@ -187,7 +187,7 @@ Interface utilisée par le serveur DHCP.
 
 ---
 
-## Durée des baux DHCP
+### 2. Durée des baux DHCP
 
 ```json
 "valid-lifetime": 691200
@@ -207,7 +207,7 @@ Durée du bail : **8 jours**
 
 ---
 
-## Serveur autoritaire
+### 3. Serveur autoritaire
 
 ```json
 "authoritative": true
@@ -218,7 +218,7 @@ Durée du bail : **8 jours**
 
 ---
 
-## Base de données des baux
+### 4. Base de données des baux
 
 ```json
 "lease-database": {
@@ -238,7 +238,7 @@ Durée du bail : **8 jours**
 
 ---
 
-# B. Création d’une étendue DHCP
+## E. Création d’une étendue DHCP
 
 Ajouter dans la configuration :
 
@@ -277,7 +277,7 @@ Options DHCP :
 
 ---
 
-# Configuration complète
+## F. Configuration complète
 
 ```json
 {
@@ -335,7 +335,7 @@ sudo systemctl restart kea-dhcp4-server.service
 
 ---
 
-# Vérification des erreurs
+# V. Vérification des erreurs
 
 Afficher les logs :
 
@@ -357,7 +357,7 @@ syntax error
 
 ---
 
-# C. Réservation DHCP
+# VI. Réservation DHCP
 
 Une réservation DHCP permet d’associer **une adresse IP à une adresse MAC**.
 
@@ -387,3 +387,23 @@ sudo systemctl restart kea-dhcp4-server.service
 
 !!! success
     Votre serveur DHCP KEA est maintenant opérationnel.
+
+# VII. Agent relais DHCP
+
+Lorsqu'un client cherche à obtenir une configuration réseau via le protocole DHCP, il envoie une requête DHCP en broadcast appelée DHCP Discover. Si le serveur DHCP est présent sur le même réseau ou sur le même VLAN, il sera à même de recevoir cette requête. Par contre si celui-ci est présent dans un autre VLAN, la requête ne lui parviendra jamais puisque le routeur (ou commutateur de niveau 3) gérant le routage inter-VLAN bloque les requêtes de diffusion.
+
+L'agent relais est donc nécessaire pour permettre à des clients, situés dans des VLANs différents de celui du serveur, de récupérer une configuration réseau. Il s'active sur l'interface du routeur servant de passerelle au client. On y indique en général l'adresse du ou des serveurs DHCP à qui le routeur devra relayer la requête en unicast.
+
+Ainsi sur un routeur Cisco, la configuration se fera de la manière suivante :
+
+```bash
+Router# conf t 
+Router(config)# interface GigabitEthernet0/0.2
+Router(config-if)# ip helper-address 192.168.0.10
+```
+
+!!! warning
+    Cet agent relais (ip helper) n'est à activer uniquement sur les interfaces de passerelle des clients situés en dehors du VLAN 
+    Serveurs.
+
+
