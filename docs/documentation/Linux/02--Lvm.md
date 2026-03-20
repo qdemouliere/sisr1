@@ -90,6 +90,12 @@ sudo vgcreate Data /dev/sda /dev/sdb /dev/sdc /dev/sdd
 sudo vgdisplay
 ```
 
+**Ajout du nouveau disque dans un groupe de volumes existant**
+
+```bash
+sudo vgextend Data /dev/sde 
+```
+
 **Création de volumes logiques (LV)** 
 
 ```bash
