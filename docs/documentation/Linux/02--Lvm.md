@@ -218,7 +218,7 @@ Si l'on ne souhaite pas conserver les modifications réalisées après le snapsh
 ```bash 
 sudo umount /bdd 
 sudo lvconvert --mergesnapshot /dev/Data/MySQLData
-sudo mount /data 
+sudo mount /bdd
 ```
 
 **Restaurer un snapshot non démontable** 
