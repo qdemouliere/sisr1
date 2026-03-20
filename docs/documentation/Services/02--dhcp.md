@@ -110,7 +110,7 @@ Main PID: 3427 (kea-dhcp4)
 
 ---
 
-# IV. Configuration du serveur DHCP KEA
+# V. Configuration du serveur DHCP KEA
 
 ## A. Identifier l’interface réseau
 
@@ -335,7 +335,7 @@ sudo systemctl restart kea-dhcp4-server.service
 
 ---
 
-# V. Vérification des erreurs
+# VI. Vérification des erreurs
 
 Afficher les logs :
 
@@ -357,7 +357,7 @@ syntax error
 
 ---
 
-# VI. Réservation DHCP
+# VII. Réservation DHCP
 
 Une réservation DHCP permet d’associer **une adresse IP à une adresse MAC**.
 
@@ -388,7 +388,7 @@ sudo systemctl restart kea-dhcp4-server.service
 !!! success
     Votre serveur DHCP KEA est maintenant opérationnel.
 
-# VII. Agent relais DHCP
+# VIII. Agent relais DHCP
 
 Lorsqu'un client cherche à obtenir une configuration réseau via le protocole DHCP, il envoie une requête DHCP en broadcast appelée DHCP Discover. Si le serveur DHCP est présent sur le même réseau ou sur le même VLAN, il sera à même de recevoir cette requête. Par contre si celui-ci est présent dans un autre VLAN, la requête ne lui parviendra jamais puisque le routeur (ou commutateur de niveau 3) gérant le routage inter-VLAN bloque les requêtes de diffusion.
 
