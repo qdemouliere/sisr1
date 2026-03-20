@@ -217,7 +217,7 @@ Si l'on ne souhaite pas conserver les modifications réalisées après le snapsh
 
 ```bash 
 sudo umount /bdd 
-sudo lvconvert --mergesnapshot /dev/Data/MySQLData
+sudo lvconvert --mergesnapshot /dev/Data/snapbdd
 sudo mount /bdd
 ```
 
